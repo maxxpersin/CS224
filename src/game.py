@@ -12,7 +12,7 @@ from bot import Bot
 
 
 def play_game(player, bot):
-    player.print_board()
+    player.create_board()
     bot.print_board()
 
     player.make_guess(int(input('Enter X Coordinate: ')), int(input('Enter Y Coordinate')), bot)
