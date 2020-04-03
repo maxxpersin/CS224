@@ -1,5 +1,5 @@
-# Main 
-# 
+# Main
+#
 # Battle-Py!
 #
 # Authors: Max Ahola, Douglas Krouth, Alyssa Oswald, Maxx Persin
@@ -8,32 +8,23 @@
 
 from tkinter import *
 from player import Player
+from bot import Bot
 
 
-def create_board(root):
-    arr = [0] * 12
-    for i in range(0, 12):
-        arr[i] = [0] * 12
-        for j in range(0, 12):
-            b = Button(root, text='{}, {}'.format(i, j))
-            b.grid(row=j, column=i)
-            arr[i][j] = b
+def play_game(player, bot):
+    player.print_board()
+    bot.print_board()
 
-    return arr
+    player.make_guess(int(input('Enter X Coordinate: ')), int(input('Enter Y Coordinate')), bot)
+    player.print_board()
+    bot.print_board()
 
 
-root = Tk()
-root.grid()
+def main():
+    player = Player(input('Enter your name: '))
+    bot = Bot()
 
-board1 = create_board(root)
-board2 = create_board(root)
+    play_game(player, bot)
 
-root.mainloop()
-
-# Ship_num = 5
-
-# grid= []
-# for i in range(10):
-#     grid.append(['0','0','0','0','0','0','0','0','0','0'])
-# grid[3][4]=1
-# print grid
+if __name__ == '__main__':
+    main()
