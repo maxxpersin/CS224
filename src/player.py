@@ -66,6 +66,10 @@ class Player():
                     if x < 0 or x > 11 or y_start < 0 or y_start > 11 or y_end < 0 or y_end > 11:
                         print('Invalid coordinates given. Please try again.')
                         continue
+
+                    if y_end < y_start:
+                        print('Invalid start and end, please ensure end-point is larger than start-point')
+                        continue
                     
                     # to check if length is valid
                     ship_length = abs(y_start-y_end)+1
@@ -86,7 +90,8 @@ class Player():
 
                     for i in range(y_start, y_end + 1):
                         self.board[i][x] = 1
-                        ships_left.remove(ship_length)
+                        
+                    ships_left.remove(ship_length)
                 except Exception:
                     print(Exception)
 
@@ -101,6 +106,10 @@ class Player():
                         print('Invalid coordinates given. Please try again.')
                         continue
                     
+                    if x_end < x_start:
+                        print('Invalid start and end, please ensure end-point is larger than start-point')
+                        continue
+
                     # to check if length is valid
                     ship_length = abs(x_start-x_end)+1
                     if ships_left.count(ship_length) == 0:
@@ -120,7 +129,8 @@ class Player():
 
                     for i in range(x_start, x_end + 1):
                         self.board[y][i] = 1
-                        ships_left.remove(ship_length)
+                    
+                    ships_left.remove(ship_length)
                 except Exception:
                     print(Exception)
 #            print(total_squares)
