@@ -1,8 +1,8 @@
-# Main
+#   Main
 #
-# Battle-Py!
+#   Battle-Py!
 #
-# Authors: Max Ahola, Douglas Krouth, Alyssa Oswald, Maxx Persin
+#   Authors: Max Ahola, Douglas Krouth, Alyssa Oswald, Maxx Persin
 #
 #
 
