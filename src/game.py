@@ -1,48 +1,35 @@
-# Main
+#   Main
 #
-# Battle-Py!
+#   Battle-Py!
 #
-# Authors: Max Ahola, Douglas Krouth, Alyssa Oswald, Maxx Persin
+#   Authors: Max Ahola, Douglas Krouth, Alyssa Oswald, Maxx Persin
 #
 #
 
-from tkinter import *
+
 from player import Player
+from bot import Bot
 
 
-def place_ship(x_loc, y_loc):
-    print('{} {}'.format(x_loc, y_loc))
-    bname = board1[x_loc][y_loc]
-    print(bname)
+def play_game(player, bot):
+    player.create_board()
+    bot.print_board()
+
+    player.make_guess(int(input('Enter X Coordinate: ')), int(input('Enter Y Coordinate: ')), bot)
+    player.print_board()
+    bot.print_board()
 
 
-def create_board(root, board):
-    arr = []
-    for i in range(0, 12):
-        arr.append([0,0,0,0,0,0,0,0,0,0,0,0])
-        arr[i] = []
-        for j in range(0, 12):
-            if board == 1:
-                b = Button(root, text='?')
-            elif board == 2:
-                b = Button(root, text='x', command=lambda : place_ship(i, j))
-            #b = Button(root, text='{}, {}'.format(i, j))
-            b.grid(row=j, column=i)
-            arr[i].append(b)
+def main():
+    player = Player(input('Enter your name: '))
+    bot = Bot()
 
-    return arr
+    play_game(player, bot)
+
+if __name__ == '__main__':
+    main()
 
 
-main_board = Tk()
-main_board.grid()
-main_board.winfo_toplevel().title('Main')
 
-guess_board = Tk()
-guess_board.grid()
-guess_board.winfo_toplevel().title('Guesses')
-
-board1 = create_board(main_board, 1)
-board2 = create_board(guess_board, 2)
-
-main_board.mainloop()
-guess_board.mainloop()
+#bug: using the game play V x = 2,5 y start = 1 y end = 4 only changes the first two spots not all 4
+# update: the whole middle of the board doesn't change
