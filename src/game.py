@@ -17,9 +17,10 @@ def place_ship(x_loc, y_loc):
 
 
 def create_board(root, board):
-    arr = [0] * 12
+    arr = []
     for i in range(0, 12):
-        arr[i] = [0] * 12
+        arr.append([0,0,0,0,0,0,0,0,0,0,0,0])
+        arr[i] = []
         for j in range(0, 12):
             if board == 1:
                 b = Button(root, text='?')
@@ -27,7 +28,7 @@ def create_board(root, board):
                 b = Button(root, text='x', command=lambda : place_ship(i, j))
             #b = Button(root, text='{}, {}'.format(i, j))
             b.grid(row=j, column=i)
-            arr[i][j] = b
+            arr[i].append(b)
 
     return arr
 
