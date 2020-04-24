@@ -74,7 +74,7 @@ class Player():
                     # to check if length is valid
                     ship_length = abs(y_start-y_end)+1
                     if ships_left.count(ship_length) == 0:
-                        print('Invalide ship length. Please try again.')
+                        print('Invalid ship length. Please try again.')
                         continue
                     
                     #new to check if overlap
