@@ -29,6 +29,7 @@ class Player():
 
     def make_guess(self, x, y, opponent):
         opponent.update_clean_board(x, y)
+        
 
     def create_board(self):
         if not self.allow_board_creation:
