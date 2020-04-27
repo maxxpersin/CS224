@@ -4,10 +4,11 @@
 #
 
 from termcolor import colored
-
+from ship import Ship
 
 class Player():
     def __init__(self, name):
+        self.ships = []
         self.name = name
         self.allow_board_creation = True
         self.board = [0] * 12
@@ -76,6 +77,7 @@ class Player():
                     if ships_left.count(ship_length) == 0:
                         print('Invalid ship length. Please try again.')
                         continue
+
                     
                     #new to check if overlap
                     V_break = False
@@ -88,8 +90,8 @@ class Player():
                     if V_break:
                         continue
 
-                    for i in range(y_start, y_end + 1):
-                        self.board[i][x] = 1
+                    new_ship = Ship(x, y_start, direction, ship_length, self.board)
+                    self.ships.append(new_ship)
                         
                     ships_left.remove(ship_length)
                 except Exception:
@@ -127,8 +129,8 @@ class Player():
                     if H_break:
                         continue
 
-                    for i in range(x_start, x_end + 1):
-                        self.board[y][i] = 1
+                    new_ship = Ship(x_start, y, direction, ship_length, self.board)
+                    self.ships.append(new_ship)
                     
                     ships_left.remove(ship_length)
                 except Exception:
