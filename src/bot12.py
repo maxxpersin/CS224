@@ -96,4 +96,4 @@ class Bot:
         return self.hidden_board
 
     def update_clean_board(self, x, y):
-        self.clean_board[x][y] = self.hidden_board[x][y]
+        self.clean_board[y][x] = self.hidden_board[y][x]
