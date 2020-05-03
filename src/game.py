@@ -12,7 +12,7 @@ from bot import Bot
 
 
 def play_game(player, bot):
-    
+    Win=False
     while (Win==False):
         player.make_guess(int(input('Enter X Coordinate: ')), int(input('Enter Y Coordinate: ')), bot)
         bot.take_guess(player)
