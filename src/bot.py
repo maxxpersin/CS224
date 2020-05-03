@@ -12,6 +12,8 @@ class Bot:
         self.hidden_board = [0] * 12
         self.clean_board = [0] * 12
         self.guesses = [0]*12
+        self.hits_reamaining=16
+        self.ships = []
         self.player_board = players.get_board()
         self.current = []
         self.dir = -1
@@ -47,8 +49,8 @@ class Bot:
                         start_x = randint(0, 11)
                         start_y = randint(0, 11)
                         break
-            for z in range(0, x):
-                self.hidden_board[start_x][(start_y+z)] = 1
+            new_ship = Ship(start_x, start_y, 'V',x, self.hidden_board)
+            self.ships.append(new_ship)
 
         else:
             # do Horizontal
@@ -70,8 +72,8 @@ class Bot:
                         start_x = randint(0, 11)
                         start_y = randint(0, 11)
                         break
-            for z in range(0, x):
-                self.hidden_board[(start_x+z)][start_y] = 1
+            new_ship = Ship(start_x, start_y, 'H',x, self.hidden_board)
+            self.ships.append(new_ship)
 
     def take_guess(self, player):
         if(len(self.current) == 0):
