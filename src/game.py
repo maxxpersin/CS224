@@ -21,7 +21,7 @@ def play_game(player, bot):
 
 def main():
     player = Player(input('Enter your name: '))
-    player.create_board()
+    player.create_board(testing=True)
     
     bot = Bot(player)
     bot.print_board()
