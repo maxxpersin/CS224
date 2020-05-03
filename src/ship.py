@@ -15,7 +15,7 @@ class Ship:
                 cell = self.Cell(i, y_pos)
                 self.cells.append(cell)
                 board[y_pos][i] = 1
-    
+
     def is_ship_sunk(self):
         if self.sunk:
             return True
@@ -24,11 +24,15 @@ class Ship:
             return True
         else:
             return False
-    
+
     def hit(self, x_pos, y_pos):
-        for cell in self.cells:
-            if cell.x == x_pos and cell.y == y_pos:
-                del self.cells[cell]
+        for i in range(0, len(self.cells)):
+            # print(str(cell.x) + ' ' + str(cell.y))
+            # print(str(x_pos) + ' ' + str(y_pos))
+            if self.cells[i].x == x_pos and self.cells[i].y == y_pos:
+                print('HIT')
+                del self.cells[i]
+                return
 
     class Cell:
         def __init__(self, x, y):

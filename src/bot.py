@@ -5,6 +5,7 @@
 #
 from random import randint
 from termcolor import colored
+from ship import Ship
 
 
 class Bot:
@@ -12,7 +13,7 @@ class Bot:
         self.hidden_board = [0] * 12
         self.clean_board = [0] * 12
         self.guesses = [0]*12
-        self.hits_reamaining=16
+        self.hits_reamaining = 16
         self.ships = []
         self.player_board = players.get_board()
         self.current = []
@@ -49,7 +50,7 @@ class Bot:
                         start_x = randint(0, 11)
                         start_y = randint(0, 11)
                         break
-            new_ship = Ship(start_x, start_y, 'V',x, self.hidden_board)
+            new_ship = Ship(start_x, start_y, 'V', x, self.hidden_board)
             self.ships.append(new_ship)
 
         else:
@@ -72,7 +73,7 @@ class Bot:
                         start_x = randint(0, 11)
                         start_y = randint(0, 11)
                         break
-            new_ship = Ship(start_x, start_y, 'H',x, self.hidden_board)
+            new_ship = Ship(start_x, start_y, 'H', x, self.hidden_board)
             self.ships.append(new_ship)
 
     def take_guess(self, player):
@@ -197,3 +198,17 @@ class Bot:
 
     def update_clean_board(self, x, y):
         self.clean_board[x][y] = self.hidden_board[x][y]
+        if self.clean_board[x][y] == 1:
+            for ship in self.ships:
+                ship.hit(y, x)
+
+    def all_ships_sunk(self):
+        num_ships = len(self.ships)
+        count = 0
+        for ship in self.ships:
+            print(ship)
+            if ship.is_ship_sunk():
+                count += 1
+
+        print('{} NUM SHIPS SUNK'.format(count))
+        return count == num_ships
