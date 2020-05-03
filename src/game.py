@@ -8,15 +8,16 @@
 
 
 from player import Player
-from bot12 import Bot
+from bot import Bot
 
 
 def play_game(player, bot):
     
-
-    player.make_guess(int(input('Enter X Coordinate: ')), int(input('Enter Y Coordinate: ')), bot)
-    player.print_board()
-    bot.print_board()
+    while (Win==False):
+        player.make_guess(int(input('Enter X Coordinate: ')), int(input('Enter Y Coordinate: ')), bot)
+        bot.take_guess(player)
+        player.print_board()
+        bot.print_board()
 
 
 def main():
