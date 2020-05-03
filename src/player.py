@@ -19,23 +19,28 @@ class Player():
     def get_board(self):
         return self.board
 
-    def update_board(self,x,y):
-        if self.board[x][y]==1:
-            self.board[x][y]='X'
+    def update_board(self, x, y):
+        if self.board[x][y] == 1:
+            self.board[x][y] = 'X'
         else:
-            self.board[x][y]='O'
+            self.board[x][y] = 'O'
+
     def print_board(self):
         print("{}'s Board:".format(self.name))
         for i in range(0, len(self.board)):
             for j in range(0, len(self.board[i])):
-                if self.board[i][j] == 1 or self.board[i][j]== 'X':
+                if self.board[i][j] == 1:
+                    print(colored(str(self.board[i][j]), 'green'), end=' ')
+                elif self.board[i][j] == 'X':
                     print(colored(str(self.board[i][j]), 'red'), end=' ')
+                elif self.board[i][j] == 'O':
+                    print(colored(str(self.board[i][j]), 'blue'), end=' ')
                 else:
                     print(self.board[i][j], end=' ')
             print()
 
     def make_guess(self, x, y, opponent):
-        opponent.update_clean_board(x, y)
+        opponent.update_clean_board(y, x)
 
     def create_board(self, testing=False):
         if not self.allow_board_creation:
