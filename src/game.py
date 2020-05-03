@@ -20,7 +20,7 @@ def play_game(player, bot):
     while (Win == False):
         player.make_guess(int(input('Enter X Coordinate: ')),
                           int(input('Enter Y Coordinate: ')), bot)
-        bot.take_guess(player)
+        #bot.take_guess(player)
         player.print_board()
         bot.print_board_cheat()
         bot.print_board()
