@@ -76,7 +76,7 @@ class Bot:
             new_ship = Ship(start_x, start_y, 'H', x, self.hidden_board)
             self.ships.append(new_ship)
 
-def take_guess(self,player):
+    def take_guess(self,player):
         #if a ship has not been found guess at random
         if(len(self.current) == 0):
             self.dir=-1
