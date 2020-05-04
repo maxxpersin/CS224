@@ -27,7 +27,6 @@ class Bot:
         ships = [5, 4, 3, 3, 2]
         for x in ships:
             self.place_ship(x)
-        self.print_board_cheat()
 
     def place_ship(self, x):
         dir = randint(0, 1)

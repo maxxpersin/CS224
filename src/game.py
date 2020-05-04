@@ -27,7 +27,7 @@ def play_game(player, bot, testing=False):
             continue
         bot.take_guess(player)
         player.print_board()
-        if testing:
+        if testing == True:
             bot.print_board_cheat()
         bot.print_board()
 
@@ -49,6 +49,8 @@ def main(args):
     player.create_board(testing=testing)
 
     bot = Bot(player)
+    if testing == True:
+        bot.print_board_cheat()
     bot.print_board()
 
     play_game(player, bot, testing=testing)
