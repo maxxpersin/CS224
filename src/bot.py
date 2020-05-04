@@ -206,9 +206,6 @@ class Bot:
         num_ships = len(self.ships)
         count = 0
         for ship in self.ships:
-            print(ship)
             if ship.is_ship_sunk():
                 count += 1
-
-        print('{} NUM SHIPS SUNK'.format(count))
         return count == num_ships

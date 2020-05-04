@@ -26,7 +26,6 @@ def play_game(player, bot):
         bot.print_board()
 
         Win = check_win(player, bot)
-        print(Win)
 
 
 def main():

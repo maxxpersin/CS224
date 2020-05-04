@@ -30,7 +30,6 @@ class Ship:
             # print(str(cell.x) + ' ' + str(cell.y))
             # print(str(x_pos) + ' ' + str(y_pos))
             if self.cells[i].x == x_pos and self.cells[i].y == y_pos:
-                print('HIT')
                 del self.cells[i]
                 return
 
