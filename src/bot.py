@@ -258,36 +258,25 @@ def take_guess(self,player):
             quit()
     #checks if there is a possible guess
     def is_ship_final(self):
-        t = self.current[0][0]
-        y = self.current[0][1]
-        count = 0
-        if(self.dir == 0 or self.dir == 2):
-            if t != 0:
-                if self.guesses[t-1][y] == 'X':
+         t=self.current[0][0]
+        y=self.current[0][1]
+        count=0
+        if(self.dir==0 or self.dir==2):
+            print('x')
+            if t!=0:
+                if self.guesses[t-1][y]=='X':
                     return False
-            if t != 11:
-                if self.guesses[t+1][y] == 'X':
+            if t!=11:
+                if self.guesses[t+1][y]=='X':
                     return False
-        elif(self.dir == 1 or self.dir == 3):
-            if y != 0:
-                if self.guesses[t][y-1] == 'X':
+        elif(self.dir==1 or self.dir==3):
+            print('y')
+            if y!=0:
+                if self.guesses[t][y-1]=='X':
                     return False
-            if y != 11:
-                if self.guesses[t][y+1] == 'X':
+            if y!=11:
+                if self.guesses[t][y+1]=='X':
                     return False
-        if self.dir == -1:
-            print('yo')
-            if t != 0:
-                if self.guesses[t-1][y] == 'X':
-                    return False
-            if y != 0:
-                if self.guesses[t][y-1] == 'X':
-                    return False
-            if t != 11:
-                if self.guesses[t+1][y] == 'X':
-                    return False
-            if y != 11:
-                if self.guesses[t][y+1] == 'X':
-                    return False
-        print('True')
+        if self.dir==-1:
+            return False
         return True
