@@ -76,148 +76,140 @@ class Bot:
             new_ship = Ship(start_x, start_y, 'H', x, self.hidden_board)
             self.ships.append(new_ship)
 
-   def take_guess(self,player):
-        print("THIS IS THE CURRENT:  ")
-        print(self.hits_reamaining)
-        print()
+    def take_guess(self, player):
         if(len(self.current) == 0):
-            guess_x=randint(0,11)
-            guess_y=randint(0,11)
+            guess_x = randint(0, 11)
+            guess_y = randint(0, 11)
             while self.guesses[guess_x][guess_y] != 'X':
-                guess_x=randint(0,11)
-                guess_y=randint(0,11)
-            print("bot guesses {} {}".format(guess_x,guess_y))
-            self.guesses[guess_x][guess_y]=self.player_board[guess_x][guess_y]
-            #DO guess
-            player.update_board(guess_x,guess_y)
-            if  self.guesses[guess_x][guess_y]==1:
-                self.hits_reamaining=self.hits_reamaining-1
-                self.current.insert(0,(guess_x,guess_y))
-        elif (len(self.current)==1):
-            g=-1
-            g2=-1
+                guess_x = randint(0, 11)
+                guess_y = randint(0, 11)
+            print("bot guesses {} {}".format(guess_x, guess_y))
+            self.guesses[guess_x][guess_y] = self.player_board[guess_x][guess_y]
+            # DO guess
+            player.update_board(guess_x, guess_y)
+            if self.guesses[guess_x][guess_y] == 1:
+                self.hits_reamaining = self.hits_reamaining-1
+                self.current.insert(0, (guess_x, guess_y))
+        elif (len(self.current) == 1):
+            g = -1
+            g2 = -1
             if self.is_ship_final():
-                self.current=[]
+                self.current = []
                 self.take_guess(player)
                 return
-            while g2==-1 or self.guesses[g][g2]!='X':
-                temp_dir=randint(0,3)
-                if temp_dir==0:
-                    g=self.current[0][0]
-                    g2=self.current[0][1]
-                    g=g+1
-                    if g>11:
-                        g2=-1
-                if temp_dir==1:
-                    g=self.current[0][0]
-                    g2=self.current[0][1]
-                    g2=g2+1
-                    if g2>11:
-                        g2=-1
-                if temp_dir==2:
-                    g=self.current[0][0]
-                    g2=self.current[0][1]
-                    g=g-1
-                    if g<0:
-                        g2=-1
-                if temp_dir==3:
-                    g=self.current[0][0]
-                    g2=self.current[0][1]
-                    g2=g2-1
-                    if g2<0:
-                        g2=-1
-            if(player.get_board()[g][g2]=='X' or player.get_board()[g][g2]=='O' or not self.in_bounds(g,g2)):
-                self.current=[]
+            while g2 == -1 or self.guesses[g][g2] != 'X':
+                temp_dir = randint(0, 3)
+                if temp_dir == 0:
+                    g = self.current[0][0]
+                    g2 = self.current[0][1]
+                    g = g+1
+                    if g > 11:
+                        g2 = -1
+                if temp_dir == 1:
+                    g = self.current[0][0]
+                    g2 = self.current[0][1]
+                    g2 = g2+1
+                    if g2 > 11:
+                        g2 = -1
+                if temp_dir == 2:
+                    g = self.current[0][0]
+                    g2 = self.current[0][1]
+                    g = g-1
+                    if g < 0:
+                        g2 = -1
+                if temp_dir == 3:
+                    g = self.current[0][0]
+                    g2 = self.current[0][1]
+                    g2 = g2-1
+                    if g2 < 0:
+                        g2 = -1
+            if(player.get_board()[g][g2] == 'X' or player.get_board()[g][g2] == 'O' or not self.in_bounds(g, g2)):
+                self.current = []
                 self.take_guess(player)
                 return
-            self.guesses[g][g2]=player.get_board()[g][g2]
-            print("bot guesses {} {}".format(g,g2))
-            player.update_board(g,g2)
-            print("                   {},{}".format(self.guesses[g][g2],player.get_board()[g][g2]))
-            if self.guesses[g][g2]==1:
-                self.hits_reamaining=self.hits_reamaining-1
-                print("this isse the ca")
-                self.current.insert(0,(g,g2))
-                print(self.current)
-                self.dir=temp_dir
+            self.guesses[g][g2] = player.get_board()[g][g2]
+            print("bot guesses {} {}".format(g, g2))
+            player.update_board(g, g2)
+            if self.guesses[g][g2] == 1:
+                self.hits_reamaining = self.hits_reamaining-1
+                self.current.insert(0, (g, g2))
+                self.dir = temp_dir
         else:
-            if self.dir==0:
-                g=self.current[0][0]
-                g2=self.current[0][1]
-                g=g+1
-            if self.dir==1:
-                g=self.current[0][0]
-                g2=self.current[0][1]
-                g2=g2+1
-            if self.dir==2:
-                g=self.current[0][0]
-                g2=self.current[0][1]
-                g=g-1
-            if self.dir==3:
-                g=self.current[0][0]
-                g2=self.current[0][1]
-                g=g2-1
-            if self.guesses[g][g2]=='X' and self.in_bounds(g,g2):
-                self.guesses[g][g2]=self.player_board[g][g2]
-                print('HELLO THERE GENERAl KANOBOE')
-                print("bot guesses {} {}".format(g,g2))
-                player.update_board(g,g2)
-                if self.guesses[g][g2]==1:
-                    self.hits_reamaining=self.hits_reamaining-1
-                    self.current.insert(0,(g,g2))
-                    print(self.current)
+            if self.dir == 0:
+                g = self.current[0][0]
+                g2 = self.current[0][1]
+                g = g+1
+            if self.dir == 1:
+                g = self.current[0][0]
+                g2 = self.current[0][1]
+                g2 = g2+1
+            if self.dir == 2:
+                g = self.current[0][0]
+                g2 = self.current[0][1]
+                g = g-1
+            if self.dir == 3:
+                g = self.current[0][0]
+                g2 = self.current[0][1]
+                g = g2-1
+            if self.guesses[g][g2] == 'X' and self.in_bounds(g, g2):
+                self.guesses[g][g2] = self.player_board[g][g2]
+                print("bot guesses {} {}".format(g, g2))
+                player.update_board(g, g2)
+                if self.guesses[g][g2] == 1:
+                    self.hits_reamaining = self.hits_reamaining-1
+                    self.current.insert(0, (g, g2))
             else:
-                while len(self.current)>1:
+                while len(self.current) > 1:
                     self.current.pop(0)
-                    print(self.current)
-                if self.dir==0:
-                    self.dir=2
-                if self.dir==1:
-                    self.dir=3
-                if self.dir==2:
-                    self.dir=0
-                if self.dir==3:
-                    self.dir=1
+                if self.dir == 0:
+                    self.dir = 2
+                if self.dir == 1:
+                    self.dir = 3
+                if self.dir == 2:
+                    self.dir = 0
+                if self.dir == 3:
+                    self.dir = 1
                 self.take_guess(player)
         self.win()
-    def in_bounds(self,g,g2):
-        if g>-1 and g<12:
-            if g2>-1 and g2<12:
+
+    def in_bounds(self, g, g2):
+        if g > -1 and g < 12:
+            if g2 > -1 and g2 < 12:
                 return True
         return False
+
     def is_ship_final(self):
-        t=self.current[0][0]
-        y=self.current[0][1]
-        count=0
-        if(self.dir==0 or self.dir==2):
-            if t!=0:
-                if self.guesses[t-1][y]=='X':
+        t = self.current[0][0]
+        y = self.current[0][1]
+        count = 0
+        if(self.dir == 0 or self.dir == 2):
+            if t != 0:
+                if self.guesses[t-1][y] == 'X':
                     return False
-            if t!=11:
-                if self.guesses[t+1][y]=='X':
+            if t != 11:
+                if self.guesses[t+1][y] == 'X':
                     return False
-        elif(self.dir==1 or self.dir==3):
-            if y!=0:
-                if self.guesses[t][y-1]=='X':
+        elif(self.dir == 1 or self.dir == 3):
+            if y != 0:
+                if self.guesses[t][y-1] == 'X':
                     return False
-            if y!=11:
-                if self.guesses[t][y+1]=='X':
+            if y != 11:
+                if self.guesses[t][y+1] == 'X':
                     return False
-        if self.dir==-1:
+        if self.dir == -1:
             print('yo')
-            if t!=0:
-                if self.guesses[t-1][y]=='X':
+            if t != 0:
+                if self.guesses[t-1][y] == 'X':
                     return False
-            if y!=0:
-                if self.guesses[t][y-1]=='X':
+            if y != 0:
+                if self.guesses[t][y-1] == 'X':
                     return False
-            if t!=11:
-                if self.guesses[t+1][y]=='X':
+            if t != 11:
+                if self.guesses[t+1][y] == 'X':
                     return False
-            if y!=11:
-                if self.guesses[t][y+1]=='X':
+            if y != 11:
+                if self.guesses[t][y+1] == 'X':
                     return False
-        print('True')
         return True
 
     def in_bounds(self, g, g2):
@@ -263,41 +255,43 @@ class Bot:
             if ship.is_ship_sunk():
                 count += 1
         return count == num_ships
+
     def win(self):
-        if self.hits_reamaining==0:
+        if self.hits_reamaining == 0:
             print("YOU LOOSE, Better Luck Next time.")
             quit()
+
     def is_ship_final(self):
-        t=self.current[0][0]
-        y=self.current[0][1]
-        count=0
-        if(self.dir==0 or self.dir==2):
-            if t!=0:
-                if self.guesses[t-1][y]=='X':
+        t = self.current[0][0]
+        y = self.current[0][1]
+        count = 0
+        if(self.dir == 0 or self.dir == 2):
+            if t != 0:
+                if self.guesses[t-1][y] == 'X':
                     return False
-            if t!=11:
-                if self.guesses[t+1][y]=='X':
+            if t != 11:
+                if self.guesses[t+1][y] == 'X':
                     return False
-        elif(self.dir==1 or self.dir==3):
-            if y!=0:
-                if self.guesses[t][y-1]=='X':
+        elif(self.dir == 1 or self.dir == 3):
+            if y != 0:
+                if self.guesses[t][y-1] == 'X':
                     return False
-            if y!=11:
-                if self.guesses[t][y+1]=='X':
+            if y != 11:
+                if self.guesses[t][y+1] == 'X':
                     return False
-        if self.dir==-1:
+        if self.dir == -1:
             print('yo')
-            if t!=0:
-                if self.guesses[t-1][y]=='X':
+            if t != 0:
+                if self.guesses[t-1][y] == 'X':
                     return False
-            if y!=0:
-                if self.guesses[t][y-1]=='X':
+            if y != 0:
+                if self.guesses[t][y-1] == 'X':
                     return False
-            if t!=11:
-                if self.guesses[t+1][y]=='X':
+            if t != 11:
+                if self.guesses[t+1][y] == 'X':
                     return False
-            if y!=11:
-                if self.guesses[t][y+1]=='X':
+            if y != 11:
+                if self.guesses[t][y+1] == 'X':
                     return False
         print('True')
-        return True            
+        return True

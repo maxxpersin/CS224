@@ -53,7 +53,7 @@ class Player():
 
 #           total_squares = 15
             # new
-            ships_left = [5, 4, 3, 3, 2, 2, 1]
+            ships_left = [5, 4, 3, 3, 2]
 
             # changed
             while len(ships_left) != 0:
@@ -157,7 +157,7 @@ class Player():
         elif testing:
             ship1 = Ship(0, 0, 'H', 5, self.board)
             self.ships.append(ship1)
-            ship2 = Ship(5, 0, 'V', 4, self.board)
+            ship2 = Ship(8, 0, 'V', 4, self.board)
             self.ships.append(ship2)
             ship3 = Ship(1, 5, 'H', 4, self.board)
             self.ships.append(ship3)

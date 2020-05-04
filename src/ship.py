@@ -27,8 +27,6 @@ class Ship:
 
     def hit(self, x_pos, y_pos):
         for i in range(0, len(self.cells)):
-            # print(str(cell.x) + ' ' + str(cell.y))
-            # print(str(x_pos) + ' ' + str(y_pos))
             if self.cells[i].x == x_pos and self.cells[i].y == y_pos:
                 del self.cells[i]
                 return
