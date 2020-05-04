@@ -15,6 +15,7 @@ class Bot:
         self.guesses = [0]*12
         self.hits_reamaining = 16
         self.ships = []
+        self.dir_change=False
         self.player_board = players.get_board()
         self.current = []
         self.dir = -1
@@ -258,7 +259,7 @@ class Bot:
             quit()
     #checks if there is a possible guess
     def is_ship_final(self):
-         t=self.current[0][0]
+        t=self.current[0][0]
         y=self.current[0][1]
         count=0
         if(self.dir==0 or self.dir==2):
@@ -280,3 +281,4 @@ class Bot:
         if self.dir==-1:
             return False
         return True
+
