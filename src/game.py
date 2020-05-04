@@ -32,6 +32,8 @@ def play_game(player, bot, testing=False):
         bot.print_board()
 
         Win = check_win(player, bot)
+    
+    print('YOU WIN!')
 
 
 def main(args):
