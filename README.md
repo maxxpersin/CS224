@@ -7,6 +7,14 @@
 The object of Battle-Py is to try and sink all of the bot's ships before the bot sinks all of your ships. All of the other bot's ships are somewhere on his/her board.  You try and hit them by inputting the coordinates of one of the squares on the board.  The bot player then tries to hit your ships by providing coordinates.  Neither you nor the bot can see the other's board so you must try to guess where they are.  Each board in the physical game has two grids:  the lower (horizontal) section for the player's ships and the upper part (vertical during play) for recording the player's guesses.
 
 ## Starting a New Game
+To begin the game, navigate to the src folder and enter this command<br>
+```
+CS224\src> python game.py
+```
+To begin the game in testing mode, which places the player's ships for you and shows the computer's ship placements, type this command into the same directory<br>
+```
+CS224\src> python game.py test
+```
 Each player places the 5 ships somewhere on their board.  The ships can only be placed vertically or horizontally. Diagonal placement is not allowed. No part of a ship may hang off the edge of the board.  Ships may not overlap each other.  No ships may be placed on another ship. <br>
 
 Once the guessing begins, the players may not move the ships.<br>
