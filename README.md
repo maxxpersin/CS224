@@ -31,8 +31,10 @@ As soon as all of either the player or the bot's ships have been sunk, the game 
 # Program Structure
 ***
 
-## To run the program, the user must first install *termcolor*. This can be done using the following command:
-pip install termcolor
+To run the program, the user must first install *termcolor*. This can be done using the following command in the project's src folder:
+```
+CS224\src> pip install termcolor
+```
 
 ## game.py - Game driver, responsible for implementing core functionality.
 ### Dependencies: player.py, bot.py
