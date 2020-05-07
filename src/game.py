@@ -22,7 +22,7 @@ def play_game(player, bot, testing=False):
         try:
             player.make_guess(int(input('Enter X Coordinate: ')),
                               int(input('Enter Y Coordinate: ')), bot)
-        except Exception:
+        except Exception: # User did not give integer input
             print('X and Y must be numbers')
             continue
         bot.take_guess(player)
@@ -37,7 +37,7 @@ def play_game(player, bot, testing=False):
 
 
 def main(args):
-    if len(args) > 1:
+    if len(args) > 1: # Arg parsing for testing
         if args[1] == 'test':
             testing = True
         else:
@@ -59,5 +59,3 @@ def main(args):
 if __name__ == '__main__':
     main(sys.argv)
 
-# bug: using the game play V x = 2,5 y start = 1 y end = 4 only changes the first two spots not all 4
-# update: the whole middle of the board doesn't change

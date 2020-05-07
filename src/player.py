@@ -20,9 +20,9 @@ class Player():
         return self.board
 
     def update_board(self, x, y):
-        if self.board[x][y] == 1:
+        if self.board[x][y] == 1: # Hit
             self.board[x][y] = 'X'
-        else:
+        else: # Miss
             self.board[x][y] = 'O'
 
     def print_board(self):
@@ -154,7 +154,7 @@ class Player():
                         print(Exception)
     #            print(total_squares)
                 self.print_board()
-        elif testing:
+        elif testing: # Default ship placements when testing
             ship1 = Ship(0, 0, 'H', 5, self.board)
             self.ships.append(ship1)
             ship2 = Ship(8, 0, 'V', 4, self.board)
